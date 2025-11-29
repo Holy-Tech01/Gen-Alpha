@@ -7,8 +7,9 @@ import {
   faMobile,
   faRocket,
   faShieldHalved,
+  faCheck,
+  faServer,
 } from "@fortawesome/free-solid-svg-icons";
-import { faReact } from "@fortawesome/free-brands-svg-icons";
 import "./Home.css";
 
 const Home = () => {
@@ -36,31 +37,44 @@ const Home = () => {
     <div className="app-container">
       <div className="content-wrapper">
         <div className="main-card">
-          <div className="logo-container">
-            <FontAwesomeIcon icon={faReact} className="logo-icon" />
-          </div>
+          {/* Your Custom Logo */}
+          <img
+            src="/images/logo.png"
+            alt="Gen Alpha Logo"
+            className="logo-image"
+            onError={(e) => {
+              // Fallback if image doesn't load
+              e.target.style.display = "none";
+              const fallback = document.createElement("div");
+              fallback.className = "logo-fallback";
+              fallback.textContent = "α";
+              e.target.parentNode.insertBefore(fallback, e.target);
+            }}
+          />
 
           <h1 className="app-title">Gen Alpha</h1>
 
           <p className="app-subtitle">The future of social connection</p>
 
+          {/* Status with Font Awesome Icons */}
           <div
             className={`status-container ${isOnline ? "online" : "offline"}`}
           >
             <FontAwesomeIcon
-              icon={isOnline ? faSignal : faWifi}
+              icon={isOnline ? faCheck : faServer}
               className={`status-icon ${isOnline ? "online" : "offline"}`}
             />
             <p className="status-text">{serverStatus}</p>
           </div>
 
+          {/* Button with Font Awesome Icon */}
           <button onClick={checkServerHealth} className="connection-button">
             <FontAwesomeIcon icon={faRocket} className="button-icon" />
             Check Connection
           </button>
         </div>
 
-        {/* Footer */}
+        {/* Footer with Font Awesome Icons */}
         <div className="footer">
           <p className="footer-text">
             <FontAwesomeIcon icon={faMobile} className="footer-icon" />
