@@ -20,9 +20,8 @@ const Home = () => {
 
   const checkServerHealth = async () => {
   try {
-    // Direct connection to backend (bypass proxy)
-    const response = await axios.get('http://localhost:3002/api/health')
-    setServerStatus(`Server: ${response.data.status} `)
+    const response = await axios.get('https://gen-alpha-3acd.onrender.com/api/health')
+    setServerStatus(`Server: ${response.data.status}`)
   } catch (error) {
     setServerStatus(`Server: Offline - ${error.message}`)
   }
